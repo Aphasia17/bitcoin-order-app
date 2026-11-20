@@ -7,12 +7,13 @@ import { environment } from '../../environments/environment';
   providedIn: 'root'
 })
 export class BitcoinService {
-  constructor(private http: HttpClient) { }
-  backendApiUrl = environment.api_url;
+  backendApiUrl = environment.apiUrl;
   bitcoinApiUrl = `${this.backendApiUrl}/bitcoin`;
   bitcoinPriceApiUrl = `${this.backendApiUrl}/price`;
 
   myServicePrice: number;
+
+  constructor(private http: HttpClient) { }
 
   public getPrice(): Promise<any> {
     return (

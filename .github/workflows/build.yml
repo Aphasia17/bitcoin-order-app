@@ -33,7 +33,7 @@ jobs:
         run: npm run build -- --base-href=/bitcoin-order-app/
 
       - name: Lint
-        run: npx --no-install tslint --project tsconfig.app.json --config tslint.json
+        run: npm run lint
 
       # The workshop leaves unit tests disabled.
       # - name: Test
