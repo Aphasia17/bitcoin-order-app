@@ -1,0 +1,27 @@
+name: owasp-scan
+
+on:
+  push:
+    branches: [githubcicd]
+
+permissions:
+  contents: read
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+
+    steps:
+      - uses: actions/checkout@v7
+
+      - name: Run ZAP baseline scan
+        run: bash scripts/zap-script.sh
+
+      - name: Archive DAST report
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: zap-report
+          path: ./zap-reports/zap_baseline_report.html
+          if-no-files-found: error
